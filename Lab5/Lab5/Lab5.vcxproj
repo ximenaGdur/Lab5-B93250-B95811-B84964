@@ -129,10 +129,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Double.cpp" />
+    <ClCompile Include="Evaluator.cpp" />
+    <ClCompile Include="Fraction.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Set.cpp" />
+    <ClCompile Include="Value.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller.hpp" />
+    <ClInclude Include="Double.hpp" />
+    <ClInclude Include="Evaluator.hpp" />
+    <ClInclude Include="Fraction.hpp" />
+    <ClInclude Include="Set.hpp" />
+    <ClInclude Include="Value.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

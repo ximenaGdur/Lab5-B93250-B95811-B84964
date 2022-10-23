@@ -1,11 +1,12 @@
 // Lab5.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
+#include "Controller.hpp"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Controller controller;
+    controller.run();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
