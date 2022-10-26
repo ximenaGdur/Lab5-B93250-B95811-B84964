@@ -13,10 +13,10 @@ public:
 	Fraction(int, int);
 	~Fraction();
 
-	const Value& operator+ (const Value&) override;
-	const Value& operator- (const Value&) override;
-	const Value& operator/ (const Value&) override;
-	const Value& operator* (const Value&) override;
+	Fraction& operator+ (Value const&) const override;
+	Fraction& operator- (Value const&) const override;
+	Fraction& operator/ (Value const&) const override;
+	Fraction& operator* (Value const&) const override;
 
 };
 

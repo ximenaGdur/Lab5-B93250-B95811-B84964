@@ -1,29 +1,47 @@
 #include "Double.hpp"
 
-Double::Double(std:string type)
-	: Value("Double")
-	, myValue{ value } { }
+Double::Double(double value)
+	: Value ("Value")
+	, myValue { value }
+{
+}
 
-const Double& Double::operator+(const Double& value) {
-	Double result;
-	result.myValue = this->myValue + value.myValue;
+Double::~Double()
+{
+}
+
+Double& Double::operator+(Value const& value) const {
+	Double result{0};
+	auto aDouble = dynamic_cast<Double const*>(&value);
+
+	result.myValue = this->myValue + aDouble->myValue;
+	
 	return result;
 }
 
-const Double& Double::operator-(const Double& value) {
-	Double result;
-	result.myValue = this->myValue - value.myValue;
+Double& Double::operator-(Value const& value) const {
+	Double result{0};
+	auto aDouble = dynamic_cast<Double const*>(&value);
+
+	result.myValue = this->myValue - aDouble->myValue;
+
 	return result;
 }
 
-const Double& Double::operator*(const Double& value){
-	Double result;
-	result.myValue = this->myValue * value.myValue;
+Double& Double::operator*(Value const& value) const {
+	Double result{0};
+	auto aDouble = dynamic_cast<Double const*>(&value);
+
+	result.myValue = this->myValue * aDouble->myValue;
+
 	return result;
 }
 
-const Double& Double::operator/(const Double& value) {
-	Double result;
-	result.myValue = this->myValue / value.myValue;
+Double& Double::operator/(Value const& value) const {
+	Double result{0};
+	auto aDouble = dynamic_cast<Double const*>(&value);
+
+	result.myValue = this->myValue / aDouble->myValue;
+
 	return result;
 }

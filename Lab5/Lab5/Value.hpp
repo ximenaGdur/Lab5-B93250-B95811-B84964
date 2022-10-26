@@ -12,11 +12,10 @@ class Value
 		Value(std::string);
 		~Value();
 
-		virtual const Value& operator+(const Value&) = 0;
-		virtual const Value& operator-(const Value&) = 0;
-		virtual const Value& operator/(const Value&) = 0;
-		virtual const Value& operator*(const Value&) = 0;
-
+		virtual Value& operator+(Value const&) const = 0;
+		virtual Value& operator-(Value const&) const = 0;
+		virtual Value& operator/(Value const&) const = 0;
+		virtual Value& operator*(Value const&) const = 0;
 };
 
 #endif //VALUE_

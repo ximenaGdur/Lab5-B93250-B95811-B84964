@@ -6,18 +6,20 @@
 
 #include <set>
 
-class Set :
-    public Value
-{
-    private:
-        std::set<int> mySet;
-    public:
-        Set(std::set<int>);
-        ~Set();
-        const Set& operator+ (const Set&) override;
-        const Set& operator- (const Set&) override;
-        const Set& operator/ (const Set&) override;
-        const Set& operator* (const Set&) override;
-        bool isEmpty();
-}
+class Set : public Value {
+private:
+    std::set<int> mySet;
+public:
+    Set(std::set<int>);
+    Set();
+    ~Set();
+
+    Set& operator+ (Value const&) const override;
+    Set& operator- (Value const&) const override;
+    Set& operator/ (Value const&) const override;
+    Set& operator* (Value const&) const override;
+
+    bool isEmpty();
+};
+
 #endif // SET_

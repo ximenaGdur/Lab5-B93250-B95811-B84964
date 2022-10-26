@@ -1,53 +1,57 @@
 #include "Fraction.hpp"
 
-Fraction::Fraction(int numerator, int denominator)
+Fraction::Fraction(int aNumerator, int aDenominator)
+	: Value {"Fraction"}
+	, numerator{ aNumerator }
+	, denominator{ aDenominator }
 {
-	this->numerator = numerator;
-	this->denominator = denominator;
 }
 
 Fraction::~Fraction()
 {
 }
 
-const Value& Fraction::operator+(const Value& value)
+Fraction& Fraction::operator+(Value const& value) const
 {
-	const Fraction fraction = static_cast<const Fraction> (value);
-
-	//Fraction& catRef2 = dynamic_cast<Fraction&>((Value)value);  // Works
-
-	//const_cast
+	Fraction result{ 0,0 };
+	auto fraction = dynamic_cast<Fraction const*>(&value);
 	
-	Fraction& res2 = const_cast<const Fraction&>(value);
+	result.numerator = (this->numerator * fraction->denominator) 
+		+ (this->denominator * fraction->numerator);
+	result.denominator = this->denominator * fraction->denominator;
 
-	Fraction result;
-	result.numerator = (this->numerator * fraction.denominator) 
-		+ (this->denominator * fraction.numerator);
-	result.denominator = this->denominator * fraction.denominator;
 	return result;
 }
 
-const Fraction& Fraction::operator-(const Fraction& fraction)
+Fraction& Fraction::operator-(Value const& value) const
 {
-	Fraction result;
-	result.numerator = (this->numerator * fraction.denominator) 
-		- (this->denominator * fraction.numerator);
+	Fraction result{ 0,0 };
+	auto fraction = dynamic_cast<Fraction const*>(&value);
+
+	result.numerator = (this->numerator * fraction->denominator) 
+		- (this->denominator * fraction->numerator);
 	result.denominator = this->denominator;
+
 	return result;
 }
 
-const Fraction& Fraction::operator*(const Fraction& fraction)
+Fraction& Fraction::operator*(Value const& value) const
 {
-	Fraction result;
-	result.numerator = this->numerator * fraction.numerator;
-	result.denominator = this->denominator * fraction.denominator;
+	Fraction result{ 0,0 };
+	auto fraction = dynamic_cast<Fraction const*>(&value);
+
+	result.numerator = this->numerator * fraction->numerator;
+	result.denominator = this->denominator * fraction->denominator;
+
 	return result;
 }
 
-const Fraction& Fraction::operator/(const Fraction& fraction)
+Fraction& Fraction::operator/(Value const& value) const
 {
-	Fraction result;
-	result.numerator = this->numerator * fraction.denominator;
-	result.denominator = this->denominator * fraction.numerator;
+	Fraction result{ 0,0 };
+	auto fraction = dynamic_cast<Fraction const*>(&value);
+
+	result.numerator = this->numerator * fraction->denominator;
+	result.denominator = this->denominator * fraction->numerator;
 	return result;
 }
