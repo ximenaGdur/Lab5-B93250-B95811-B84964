@@ -12,9 +12,4 @@ class Controller
 		void run();
 };
 
-
-
-
-
-
 #endif // CONTROLLER_
