@@ -1,5 +1,5 @@
-#ifndef DOUBLE_
-#define DOUBLE_
+#ifndef DOUBLE_HPP
+#define DOUBLE_HPP
 #pragma once
 
 #include "Value.hpp"
@@ -17,6 +17,8 @@ class Double : public Value
 	Double& operator-(Value const&) const override;
 	Double& operator*(Value const&) const override;
 	Double& operator/(Value const&) const override;
+
+	std::string toString() override;
 };
 
-#endif // DOUBLE_
+#endif // DOUBLE_HPP

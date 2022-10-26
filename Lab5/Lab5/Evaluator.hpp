@@ -7,24 +7,22 @@
 #include <stack>
 
 #include "Value.hpp"
+#include "Double.hpp"
 
 class Evaluator
 {
- public:
-	std::string expression;
-	//std::stack<Value*> myStack;
-	//std::map <char, Value*> map;
-
   private:
-	Evaluator();
-	~Evaluator();
-
-	// Value& posfixAlgorithm();
-	void posfixAlgorithm();
-
+	std::string expression;
+	std::stack<Value*> myStack;
+	std::map<char, Value*> map;
 
   public:
-	Double* evaluate(std::string);
+	Evaluator();
+	~Evaluator();
+	Value* evaluate(std::string, std::map<char, Value*>);
+
+  private:
+	Value* posfixAlgorithm();
 };
 
 #endif //EVALUATOR_

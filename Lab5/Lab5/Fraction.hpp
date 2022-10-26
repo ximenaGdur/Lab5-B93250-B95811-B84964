@@ -1,23 +1,24 @@
-#ifndef FRACTION_
-#define FRACTION_
+#ifndef FRACTION_HPP
+#define FRACTION_HPP
 #pragma once
 
 #include "Value.hpp"
 
 class Fraction : public Value
 {
-private:
-	int numerator;
-	int denominator;
-public:
-	Fraction(int, int);
-	~Fraction();
+	private:
+		int numerator;
+		int denominator;
+	public:
+		Fraction(int, int);
+		~Fraction();
 
-	Fraction& operator+ (Value const&) const override;
-	Fraction& operator- (Value const&) const override;
-	Fraction& operator/ (Value const&) const override;
-	Fraction& operator* (Value const&) const override;
+		Fraction& operator+ (Value const&) const override;
+		Fraction& operator- (Value const&) const override;
+		Fraction& operator/ (Value const&) const override;
+		Fraction& operator* (Value const&) const override;
 
+		std::string toString() override;
 };
 
-#endif // FRACTION_
+#endif // FRACTION_HPP

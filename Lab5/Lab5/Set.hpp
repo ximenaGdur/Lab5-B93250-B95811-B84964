@@ -1,25 +1,28 @@
-#ifndef SET_
-#define SET_
+#ifndef SET_HPP
+#define SET_HPP
 #pragma once
 
 #include "Value.hpp"
 
+#include <iostream>
 #include <set>
 
 class Set : public Value {
-private:
-    std::set<int> mySet;
-public:
-    Set(std::set<int>);
-    Set();
-    ~Set();
+    private:
+        std::set<int> mySet;
+    public:
+        Set();
+        Set(std::set<int>);
+        ~Set();
 
-    Set& operator+ (Value const&) const override;
-    Set& operator- (Value const&) const override;
-    Set& operator/ (Value const&) const override;
-    Set& operator* (Value const&) const override;
+        Set& operator+ (Value const&) const override;
+        Set& operator- (Value const&) const override;
+        Set& operator/ (Value const&) const override;
+        Set& operator* (Value const&) const override;
 
-    bool isEmpty();
+        std::string toString() override;
+
+        bool isEmpty();
 };
 
-#endif // SET_
+#endif // SET_HPP

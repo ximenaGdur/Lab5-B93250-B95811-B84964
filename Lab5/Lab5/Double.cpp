@@ -45,3 +45,10 @@ Double& Double::operator/(Value const& value) const {
 
 	return result;
 }
+
+std::string Double::toString()
+{
+	std::string setString("");
+	setString = std::to_string(myValue);
+	return setString;
+}
