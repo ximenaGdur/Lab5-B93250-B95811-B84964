@@ -1,12 +1,13 @@
 #include "Fraction.hpp"
-#include <cassert>
 
 Fraction::Fraction(int aNumerator, int aDenominator)
 	: Value {"Fraction"}
 	, numerator{ aNumerator }
 	, denominator{ aDenominator }
 {
-	//assert(denominator == 0); TODO
+	if (aDenominator == 0) {
+		denominator = 1;
+	}
 }
 
 Fraction::~Fraction()
@@ -15,48 +16,48 @@ Fraction::~Fraction()
 
 Fraction& Fraction::operator+(Value const& value) const
 {
-	Fraction result{ 0,0 };
+	Fraction* result = new Fraction(1,1);
 	auto fraction = dynamic_cast<Fraction const*>(&value);
 	
-	result.numerator = (this->numerator * fraction->denominator) 
+	result->numerator = (this->numerator * fraction->denominator) 
 		+ (this->denominator * fraction->numerator);
-	result.denominator = this->denominator * fraction->denominator;
+	result->denominator = this->denominator * fraction->denominator;
 
-	return result;
+	return *result;
 }
 
 Fraction& Fraction::operator-(Value const& value) const
 {
-	Fraction result{ 0,0 };
+	Fraction* result = new Fraction(1, 1);
 	auto fraction = dynamic_cast<Fraction const*>(&value);
 
-	result.numerator = (this->numerator * fraction->denominator) 
+	result->numerator = (this->numerator * fraction->denominator) 
 		- (this->denominator * fraction->numerator);
-	result.denominator = this->denominator;
+	result->denominator = this->denominator * fraction->denominator;
 
-	return result;
+	return *result;
 }
 
 Fraction& Fraction::operator*(Value const& value) const
 {
-	Fraction result{ 0,0 };
+	Fraction* result = new Fraction(1, 1);
 	auto fraction = dynamic_cast<Fraction const*>(&value);
 
-	result.numerator = this->numerator * fraction->numerator;
-	result.denominator = this->denominator * fraction->denominator;
+	result->numerator = this->numerator * fraction->numerator;
+	result->denominator = this->denominator * fraction->denominator;
 
-	return result;
+	return *result;
 }
 
 Fraction& Fraction::operator/(Value const& value) const
 {
-	Fraction result{ 0,0 };
+	Fraction* result = new Fraction(1, 1);
 	auto fraction = dynamic_cast<Fraction const*>(&value);
 
-	result.numerator = this->numerator * fraction->denominator;
-	result.denominator = this->denominator * fraction->numerator;
+	result->numerator = this->numerator * fraction->denominator;
+	result->denominator = this->denominator * fraction->numerator;
 
-	return result;
+	return *result;
 }
 
 std::string Fraction::toString()

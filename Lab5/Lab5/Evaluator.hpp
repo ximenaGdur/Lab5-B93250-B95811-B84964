@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <stack>
+#include <vector>
 
 #include "Value.hpp"
 #include "Double.hpp"
@@ -15,6 +16,7 @@ class Evaluator
 	std::string expression;
 	std::stack<Value*> myStack;
 	std::map<char, Value*> map;
+	std::vector<Value*> referencesVector;
 
   public:
 	Evaluator();
@@ -23,6 +25,7 @@ class Evaluator
 
   private:
 	Value* posfixAlgorithm();
+	void resetDataEstructures();
 };
 
 #endif //EVALUATOR_

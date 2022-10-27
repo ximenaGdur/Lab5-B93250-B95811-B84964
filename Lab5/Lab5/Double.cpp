@@ -11,39 +11,38 @@ Double::~Double()
 }
 
 Double& Double::operator+(Value const& value) const {
-	Double result{0};
+	Double* result = new Double(0);
 	auto aDouble = dynamic_cast<Double const*>(&value);
 
-	result.myValue = this->myValue + aDouble->myValue;
-	
-	return result;
+	result->myValue = this->myValue + aDouble->myValue;
+	return *result;
 }
 
 Double& Double::operator-(Value const& value) const {
-	Double result{0};
+	Double* result = new Double(0);
 	auto aDouble = dynamic_cast<Double const*>(&value);
 
-	result.myValue = this->myValue - aDouble->myValue;
+	result->myValue = this->myValue - aDouble->myValue;
 
-	return result;
+	return *result;
 }
 
 Double& Double::operator*(Value const& value) const {
-	Double result{0};
+	Double* result = new Double(0);
 	auto aDouble = dynamic_cast<Double const*>(&value);
 
-	result.myValue = this->myValue * aDouble->myValue;
+	result->myValue = this->myValue * aDouble->myValue;
 
-	return result;
+	return *result;
 }
 
 Double& Double::operator/(Value const& value) const {
-	Double result{0};
+	Double* result = new Double(0);
 	auto aDouble = dynamic_cast<Double const*>(&value);
 
-	result.myValue = this->myValue / aDouble->myValue;
+	result->myValue = this->myValue / aDouble->myValue;
 
-	return result;
+	return *result;
 }
 
 std::string Double::toString()

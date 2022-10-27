@@ -19,58 +19,58 @@ Set::~Set()
 Set& Set::operator+(Value const& anotherSet) const
 {
 	// Union
-	Set result;
+	Set* result = new Set();
 	auto set = dynamic_cast<Set const*>(&anotherSet);
 
-	/*result.mySet = this->mySet;
-	result.mySet.insert(set->mySet.begin(), set->mySet.end());*/
+	result->mySet = this->mySet;
+	result->mySet.insert(set->mySet.begin(), set->mySet.end());
 
-	return result;
+	return *result;
 }
 
 Set& Set::operator-(Value const& anotherSet) const
 {
 	// Diferencia
-	Set result;
+	Set* result = new Set();
 	auto set = dynamic_cast<Set const*>(&anotherSet);
 
-	/*std::set_difference(
+	std::set_difference(
 		this->mySet.begin(), this->mySet.end(),
 		set->mySet.begin(), set->mySet.end(),
-		std::inserter(result.mySet, result.mySet.begin())
-	);*/
+		std::inserter(result->mySet, result->mySet.begin())
+	);
 
-	return result;
+	return *result;
 }
 
 Set& Set::operator/(Value const& anotherSet) const
 {
 	// Diferencia Simetrica
-	Set result;
+	Set* result = new Set();
 	auto set = dynamic_cast<Set const*>(&anotherSet);
 
-	//std::set_symmetric_difference(
-	//	this->mySet.begin(), this->mySet.end(),
-	//	set->mySet.begin(), set->mySet.end(),
-	//	std::back_inserter(result.mySet)
-	//);
+	std::set_symmetric_difference(
+		this->mySet.begin(), this->mySet.end(),
+		set->mySet.begin(), set->mySet.end(),
+		std::inserter(result->mySet, result->mySet.begin())
+	);
 
-	return result;
+	return *result;
 }
 
 Set& Set::operator*(Value const& anotherSet) const
 {
 	// Interseccion
-	Set result;
+	Set* result = new Set();
 	auto set = dynamic_cast<Set const*>(&anotherSet);
 
-	//std::set_intersection(
-	//	this->mySet.begin(), this->mySet.end(),
-	//	set->mySet.begin(), set->mySet.end(),
-	//	std::inserter(result.mySet, result.mySet.begin())
-	//);
+	std::set_intersection(
+		this->mySet.begin(), this->mySet.end(),
+		set->mySet.begin(), set->mySet.end(),
+		std::inserter(result->mySet, result->mySet.begin())
+	);
 
-	return result;
+	return *result;
 }
 
 bool Set::isEmpty()
@@ -90,6 +90,7 @@ std::string Set::toString()
 	for (int number : mySet) {
 		setString += std::to_string(number) + ',';
 	}
+	setString.pop_back();
 	setString += '}';
 	return setString;
 }

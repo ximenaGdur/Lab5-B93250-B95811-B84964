@@ -10,10 +10,11 @@ Evaluator::~Evaluator()
 {
 }
 
-// Sacado de: https://www.codespeedy.com/calculate-a-postfix-expression-using-stack-in-cpp/
+// Adaptado de: https://www.codespeedy.com/calculate-a-postfix-expression-using-stack-in-cpp/
 Value* Evaluator::posfixAlgorithm()
 {
     size_t expressionLength = expression.length();
+    int indice = 0;
     for (size_t expressionIndex = 0; expressionIndex < expressionLength; expressionIndex++)
     {
         char currentCharacter = expression[expressionIndex];
@@ -21,7 +22,7 @@ Value* Evaluator::posfixAlgorithm()
         if (currentCharacter != '+' && currentCharacter != '-' &&
             currentCharacter != '/' && currentCharacter != '*')
         {
-            myStack.push(map[expression[expressionIndex]]);
+            myStack.push(map[currentCharacter]);
         }
         else
         {
@@ -31,37 +32,54 @@ Value* Evaluator::posfixAlgorithm()
             Value* b = myStack.top();
             myStack.pop();
 
-            switch (expression[expressionIndex])
+            switch (currentCharacter)
             {
-            case '+':
-                myStack.push(&( *b + *a));
-                break;
-            case '-':
-                myStack.push(&( *b - *a));
-                break;
-            case '*':
-                myStack.push(&(*b * *a));
-                break;
-            case '/':
-                myStack.push(&(*b / *a));
-                break;
+                case '+':
+                    referencesVector.push_back(&(*b + *a));
+                    myStack.push(referencesVector[indice]);
+                    indice++;
+                    break;
+                case '-':
+                    referencesVector.push_back(&(*b - *a));
+                    myStack.push(referencesVector[indice]);
+                    indice++;
+                    break;
+                case '*':
+                    referencesVector.push_back(&(*b * *a));
+                    myStack.push(referencesVector[indice]);
+                    indice++;
+                    break;
+                case '/':
+                    referencesVector.push_back(&(*b / *a));
+                    myStack.push(referencesVector[indice]);
+                    indice++;
+                    break;
             }
         }
     }
 
-    Value* result = (myStack.top());
-    std::cout << std::endl << std::endl << "RESULT: [" << result << "]: " << result->toString() << std::endl << std::endl;
-    // TODO: review this
+    Value* result = myStack.top();
+    myStack.pop();
 
-    //returning the calculated result
     return result;
+}
+
+void Evaluator::resetDataEstructures()
+{
+    expression = "";
+    map.clear();
+
+    int limit = referencesVector.size();
+    for (int index = 0; index < limit; index++) {
+        delete referencesVector[index];
+    }
+    referencesVector.clear();
 }
 
 Value* Evaluator::evaluate(std::string anExpression, std::map<char, Value*> aMap)
 {
     expression = anExpression;
     map = aMap;
-
     Value* result = posfixAlgorithm();
 
     return result;

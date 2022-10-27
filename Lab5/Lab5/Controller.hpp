@@ -19,9 +19,9 @@ class Controller
 		std::map<char, Value*> setMap;
 
 	private:
-		void executeEvaluatorDouble();
-		void executeEvaluatorFraction();
-		void executeEvaluatorSet();
+		void createDoubles();
+		void createFractions();
+		void createSets();
 
 	public:
 		Controller();
